@@ -1,0 +1,18 @@
+<%# <h1>Items#create</h1>
+<p>Find me in app/views/items/create.html.erb</p> %>
+<div class="h2 text-center">
+<h2>Add an item to rent 📸</h2>
+</div>
+<hr>
+<%= simple_form_for(@item) do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :category %>
+  <%= f.input :price %>
+  <%# <%= f.button :submit %>
+  <%= f.submit "List item" %>
+  <%# <%= f.button :submit %>
+  <% end %>
+    <%= link_to "Back to all items", items_path %>
+
+<%# <%= f.button :submit %>

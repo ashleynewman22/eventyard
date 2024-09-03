@@ -1,2 +1,16 @@
-<h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<div class="h2 text-center">
+<h2><strong><%= @item.name %></strong></h2>
+</div>
+
+<hr>
+
+<div class="container p-3 mb-3">
+  <p><%= @item.description %></p>
+  <p><%= @item.category %></p>
+  <p>R<%= @item.price %></p>
+</div>
+
+<%= link_to "Delete", item_path(@item), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<i class="fa-regular fa-trash"></i>
+
+<!--link_to item.name, item_path(item)-->

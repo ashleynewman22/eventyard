@@ -4,8 +4,8 @@ Rails.application.routes.draw do
   get 'carts/new'
   get 'carts/destroy'
   get 'items/index'
-  get 'items/show'
   get 'items/create'
+  get 'items/show'
   get 'items/destroy'
   devise_for :users
   root to: "pages#home"
