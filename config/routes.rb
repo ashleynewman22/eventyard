@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  get 'carts/index'
+  get 'carts/create'
+  get 'carts/new'
+  get 'carts/destroy'
+  get 'items/index'
+  get 'items/show'
+  get 'items/create'
+  get 'items/destroy'
   devise_for :users
   root to: "pages#home"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
