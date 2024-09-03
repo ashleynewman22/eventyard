@@ -1,2 +1,26 @@
-<h1>Carts#index</h1>
-<p>Find me in app/views/carts/index.html.erb</p>
+<%# <h1>Carts#index</h1>
+<p>Find me in app/views/carts/index.html.erb</p> %>
+<h1>Your Bookings</h1>
+
+<% if @carts.empty? %>
+  <p>Your cart is empty.</p>
+<% else %>
+  <% @carts.each do |cart| %>
+    <div class="cart-item">
+      <h2><%= cart.item.name %></h2>
+      <p>Requestor: <%= cart.user.email %></p>
+      <p>Booking Date: <%= cart.start_date %> to <%= cart.end_date %></p>
+      <% if cart.accepted.nil? %>
+        <%= link_to 'Accept', accept_cart_path(cart), data: { turbo_method: :patch } %> #to modify the cart's state (accept or decline) without needing a full page reload
+        <%= link_to 'Decline', decline_cart_path(cart), data: { turbo_method: :patch } %>
+        <% else %>
+        <%= cart.accepted ? 'Accepted' : 'Declined' %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <h3>Total: <%= number_to_currency(@carts.sum(&:total_price)) %></h3>
+  <%= link_to 'Proceed to Checkout', checkout_carts_path, method: :post, class: 'checkout-button' %>
+<% end %>
+
+<%= link_to 'Add More Items', items_path %>

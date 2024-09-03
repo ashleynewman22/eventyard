@@ -1,13 +1,13 @@
 class ItemsController < ApplicationController
-  def index
-  end
+#   def index
+#   end
 
-  def show
-  end
+#   def show
+#   end
 
-  def create
-  end
+#   def create
+#   end
 
-  def destroy
-  end
-end
+#   def destroy
+#   end
+# end

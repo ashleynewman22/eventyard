@@ -1,0 +1,13 @@
+<h1>Confirm Your Order</h1>
+
+<%= render 'cart_item', cart_item: @cart %>
+
+<h2>Total: <%= number_to_currency(@cart.total_price) %></h2>
+
+<%= simple_form_for @carts, url: confirm_cart_path(@cart), method: :post do |f| %>
+  <%= f.input :terms_accepted, as: :boolean, label: 'I accept the terms and conditions' %>
+
+  <%= f.button :submit, 'Confirm Order (Cash on Delivery)', class: 'btn btn-success', data: { confirm: 'Are you sure you want to place this order?' } %>
+<% end %>
+
+<%= link_to 'Back to Cart', cart_path(@cart) %>

@@ -1,2 +1,21 @@
-<h1>Carts#new</h1>
-<p>Find me in app/views/carts/new.html.erb</p>
+<h1>New Cart</h1>
+<% @carts.each do |cart| %>
+    <div class="cart-item">
+      <h2><%= cart.item.name %></h2>
+      <p>Price: <%= number_to_currency(cart.item.price) %></p>
+      <p>From: <%= cart.start_date %> to <%= cart.end_date %></p>
+      <p>Total: <%= number_to_currency(cart.total_price) %></p>
+      <%= link_to 'View', cart_path(cart) %>
+      <%= button_to 'Remove', cart_path(cart), method: :delete, data: { confirm: 'Are you sure?' } %>
+    </div>
+  <% end %>
+
+  <h3>Total: <%= number_to_currency(@carts.sum(&:total_price)) %></h3>
+  <%= link_to 'Proceed to Checkout', checkout_carts_path, method: :post, class: 'checkout-button' %>
+
+<%= link_to 'Add More Items', items_path %>
+
+
+<%= render 'form', cart: @carts %>
+
+<%= link_to 'Back', carts_path %>
