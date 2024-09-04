@@ -1,15 +1,10 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-
-
-
-
-
-
-
-
-
-
-
-
+<h1>Cart items</h1>
+<p>Please checkout and wait for approval</p>
+<% @cart.each do |item|%>
+  <div class="cart-item">
+    <p><% item.name %> - <% item.price %>
+    <% button_to 'Accept', accept_order_path(item), method:  :post, class: "btn btn-success" %>
+    <% button_to 'Decline', decline_order_path(item), method:  :post, class: "btn btn-danger" %>
+  <div>
+  <% end %>
 <%= link_to "All Items", items_path, class: "btn btn-flat" %>
