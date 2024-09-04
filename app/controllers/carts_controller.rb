@@ -18,6 +18,7 @@ class CartsController < ApplicationController
   def total_price
     item.price * (end_date - start_date).to_i
   end
+
   def create
     @cart = Cart.new(cart_params)
     @cart.item = @item
@@ -28,6 +29,7 @@ class CartsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+
   def destroy
     @cart.destroy
     redirect_to carts_path, notice: 'Cart removed.'
