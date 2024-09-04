@@ -1,9 +1,9 @@
-class CartController < ApplicationController
+class CartsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_cart, only: [:show, :destroy, :checkout, :confirm]
 
   def index
-    @carts = Cart.joins(:item).where(items: { user_id: current_user.id })
+    @carts = current_user.carts
   end
 
   def show
@@ -22,15 +22,15 @@ class CartController < ApplicationController
     end
   end
 
-  def accept
-    @booking.update_attribute(:accepted, true)
-    redirect_to carts_path
-  end
+  # def accept
+  #   @booking.update_attribute(:accepted, true)
+  #   redirect_to carts_path
+  # end
 
-  def decline
-    @booking.update_attribute(:accepted, false)
-    redirect_to carts_path
-  end
+  # def decline
+  #   @booking.update_attribute(:accepted, false)
+  #   redirect_to carts_path
+  # end
 
   def destroy
     @cart.destroy
