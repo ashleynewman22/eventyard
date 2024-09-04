@@ -7,10 +7,11 @@ class CartsController < ApplicationController
   end
 
   def show
+    cart = cart.find(params[:id])
   end
 
   def new
-    @cart = Cart.new
+    @cart = cart.new
   end
 
   def create
@@ -18,7 +19,7 @@ class CartsController < ApplicationController
     if @cart.save
       redirect_to @cart, notice: 'Cart created successfully.'
     else
-      redirect_back(fallback_location: items_path)
+      render :new
     end
   end
 
@@ -51,10 +52,7 @@ class CartsController < ApplicationController
   def confirm
     if @cart.update(cart_params)
       @cart.update(status: 'pending_approval')
-      # Notify the item owner about the pending approval
-
-      notify_item_owner
-      redirect_to @cart, notice: 'Order submitted for approval. Cash on delivery.'
+        redirect_to @cart, notice: 'Order submitted for approval. Cash on delivery.'
     else
       render :checkout
     end
@@ -68,9 +66,5 @@ class CartsController < ApplicationController
 
   def cart_params
     params.require(:cart).permit(:item_id, :cart_date)
-  end
-
-  def notify_item_owner
-    # Implement notification logic here
   end
 end
