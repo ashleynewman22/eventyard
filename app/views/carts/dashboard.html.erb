@@ -1,0 +1,12 @@
+<% @pending_carts.each do |cart| %>
+  <div>
+    <p>
+      <strong>Item:</strong> <%= cart.item.name %><br>
+      <strong>Requested By:</strong> <%= cart.user.email %>
+    </p>
+
+    <%= button_to 'Accept', accept_cart_path(cart), method: :patch, class: 'btn btn-success' %>
+    <%= button_to 'Decline', decline_cart_path(cart), method: :patch, class: 'btn btn-danger' %>
+  </div>
+  <hr>
+<% end %>

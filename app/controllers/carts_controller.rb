@@ -23,11 +23,28 @@ class CartsController < ApplicationController
     @cart = Cart.new(cart_params)
     @cart.item = @item
     @cart.user = current_user
+    @cart.status = "pending"
     if @cart.save
       redirect_to carts_path, notice: 'Cart created successfully.'
     else
       render :new, status: :unprocessable_entity
     end
+  end
+
+  def accept
+    @cart = Cart.find(params[:id])
+    @cart.status = "accepted"
+    redirect_to carts_path, notice: 'Booking accepted!'
+  end
+
+  def decline
+    @cart = Cart.find(params[:id])
+    @cart.status = "declined"
+    redirect_to carts_path, notice: 'Booking declined!'
+  end
+
+  def dashboard
+    @pending_carts = Cart.where(status: "pending")
   end
 
   def destroy
@@ -47,6 +64,6 @@ class CartsController < ApplicationController
   end
 
   def cart_params
-    params.require(:cart).permit(:start_date, :end_date)
+    params.require(:cart).permit(:item_id, :start_date, :end_date)
   end
 end
