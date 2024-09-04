@@ -1,0 +1,11 @@
+<h1>Cart Details</h1>
+
+<div class="cart-details">
+  <h2><%= @cart.item.name %></h2>
+  <p>Price: <%= number_to_currency(@cart.item.price) %></p>
+  <p>From: <%= @cart.start_date %> to <%= @cart.end_date %></p>
+  <p>Total: <%= number_to_currency(@total_price) %></p>
+  <p>Status: <%= @cart.status %></p>
+</div>
+
+<%= link_to 'Back to Cart', carts_path %>

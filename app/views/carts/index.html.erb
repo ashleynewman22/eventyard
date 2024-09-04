@@ -1,2 +1,12 @@
-<h1>Carts#index</h1>
-<p>Find me in app/views/carts/index.html.erb</p>
+<div style="text-align:centre;">
+  <h2> Cart Items</h2>
+  <ul>
+  <%@carts.each do |cart|%>
+    <li>
+    <%= cart.item.name%>
+    <%= cart.start_date%>
+    <%= cart.end_date%>
+    </li>
+  <% end %>
+  </ul>
+</div>
