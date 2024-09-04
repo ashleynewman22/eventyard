@@ -6,9 +6,9 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @item = Item.find(items_params)
+    # @item = Item.find(items_params)
     # @item = @item.name
-    # @items = Item.find(params[:id])
+    @item = Item.find(params[:id])
   end
 
   def new
@@ -16,10 +16,11 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(items_params)
+    @item = Item.new(item_params)
     @item.user = current_user
     if @item.save
-      redirect_to item_path(@item)
+      redirect_to @item
+      # redirect_to item_path(@item)
     else
       render :new, status: :unprocessable_entity
     end
@@ -29,12 +30,13 @@ class ItemsController < ApplicationController
     @item = Item.find(params[:id])
     # @item = Item.find(items_params)
     @item.destroy
-    redirect_to item_path(item), status: :see_other
+    redirect_to items_path, status: :see_other
+    # redirect_to item_path(item), status: :see_other
   end
 
   private
 
-  def items_params
+  def item_params
     params.require(:item).permit(:name, :price, :category, :description)
   end
 

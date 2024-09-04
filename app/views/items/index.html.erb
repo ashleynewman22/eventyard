@@ -2,19 +2,19 @@
 <p>Find me in app/views/items/index.html.erb</p> %>
 
 <div class="h2 text-center">
-  <h2>Explore all products</h2>
+  <h1>Explore all products</h1>
 </div>
 <hr>
 
 
-<div class="container">
-    <p><%= link_to "New Item", new_item_path, class: "btn btn-flat" %></p>
+<div class="btn btn-primary">
+    <h3><%= link_to "Add an Item", new_item_path, class: "btn btn-flat" %></h3>
   </div>
 </div>
 
-
+<div class="card-product">
   <% @items.each do |item| %>
-    <div class="card">
+    <div class="card-product-infos">
       <p><%= link_to item.name, item_path(item) %></p>
     </div>
   <% end %>

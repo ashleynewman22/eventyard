@@ -4,13 +4,16 @@
 
 <hr>
 
-<div class="container p-3 mb-3">
+<div class="card p-3 mb-3">
   <p><%= @item.description %></p>
   <p><%= @item.category %></p>
   <p>R<%= @item.price %></p>
 </div>
 
-<%= link_to "Delete", item_path(@item), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<%= link_to "Delete", item_path(@item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
 <i class="fa-regular fa-trash"></i>
 
+<%= link_to "Back to all items", items_path %>
 <!--link_to item.name, item_path(item)-->
+<%#= link_to "Delete", item_path(@item), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
+<%#= link_to "Delete", item_path(@item), method:delete, data: { confirm: "Are you sure?" } %>
