@@ -1,2 +1,31 @@
-<h1>Items#index</h1>
-<p>Find me in app/views/items/index.html.erb</p>
+<%# <h1>Items#index</h1>
+<p>Find me in app/views/items/index.html.erb</p> %>
+
+<div class="h2 text-center">
+  <h1>Explore all products</h1>
+</div>
+<hr>
+
+
+<div class="btn btn-primary">
+    <h3><%= link_to "Add an Item", new_item_path, class: "btn btn-flat" %></h3>
+  </div>
+</div>
+
+<div class="card-product">
+  <% @items.each do |item| %>
+    <div class="card-product-infos">
+      <p><%= link_to item.name, item_path(item) %></p>
+    </div>
+  <% end %>
+</div>
+
+<%# <div class="cards"> %>
+    <%# <% @items.each do |item| %>
+      <%# <%= link_to item_path(item) do %>
+        <%# <div class="card-category"> %>
+          <%# <%= item.name %>
+        <%# </div> %>
+      <%# <% end %>
+    <%# <% end %>
+  <%# </div> %>
