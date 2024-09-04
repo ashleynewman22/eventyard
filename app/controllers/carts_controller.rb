@@ -1,70 +1,50 @@
 class CartsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_cart, only: [:show, :destroy, :checkout, :confirm]
+  before_action :set_cart, only: [:show, :destroy]
+  before_action :set_item, only: [:new, :create]
 
   def index
-    @carts = current_user.carts
+    @carts = current_user.carts.includes(:item)
   end
 
   def show
-    cart = cart.find(params[:id])
+    authorize @cart
   end
 
   def new
-    @cart = cart.new
+    @cart = Cart.new
   end
 
+  def total_price
+    item.price * (end_date - start_date).to_i
+  end
   def create
-    @cart = current_user.carts.build(cart_params)
+    @cart = Cart.new(cart_params)
+    @cart.item = @item
+    @cart.user = current_user
     if @cart.save
-      redirect_to @cart, notice: 'Cart created successfully.'
+      redirect_to carts_path, notice: 'Cart created successfully.'
     else
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
-
-  # def accept
-  #   @booking.update_attribute(:accepted, true)
-  #   redirect_to carts_path
-  # end
-
-  # def decline
-  #   @booking.update_attribute(:accepted, false)
-  #   redirect_to carts_path
-  # end
-
   def destroy
     @cart.destroy
     redirect_to carts_path, notice: 'Cart removed.'
   end
 
-  def add_to_cart
-    @item = Item.find(params[:item_id])
-    @cart = current_user.carts.find_or_create_by(status: 'open')
-    @cart.cart_items.create(item: @item)
-    redirect_to @cart, notice: 'Item added to cart successfully.'
-  end
-
-  def checkout
-    @item.user
-  end
-
-  def confirm
-    if @cart.update(cart_params)
-      @cart.update(status: 'pending_approval')
-        redirect_to @cart, notice: 'Order submitted for approval. Cash on delivery.'
-    else
-      render :checkout
-    end
-  end
-
   private
 
   def set_cart
-    @cart = current_user.carts.find(params[:id])
+    @cart = Cart.find(params[:id])
+  end
+
+
+  def set_item
+    @item = Item.find(params[:item_id])
   end
 
   def cart_params
-    params.require(:cart).permit(:item_id, :cart_date)
+    params.require(:cart).permit(:start_date, :end_date)
   end
 end

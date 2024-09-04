@@ -1,8 +1,6 @@
-<%= simple_form_for @carts do |f| %>
-  <%= f.association :item, label_method: :name, value_method: :id, include_blank: false %>
-
-  <%= f.input :start_date, as: :string, input_html: { data: { controller: "datepicker" } } %>
-  <%= f.input :end_date, as: :string, input_html: { data: { controller: "datepicker" } } %>
+<%= simple_form_for([@item, @cart]) do |f| %>
+  <%= f.date_field :start_date, class: 'form-control' %>
+  <%= f.date_field :end_date, class: 'form-control' %>
 
   <%= f.button :submit, class: 'btn btn-primary' %>
 <% end %>
