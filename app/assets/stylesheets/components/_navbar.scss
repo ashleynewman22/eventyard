@@ -10,3 +10,13 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+.navbar-collapse {
+  display: flex;
+  flex-basis: auto;
+  flex-grow: 1;
+}
+// .navbar-logo {
+//   margin-right: .75rem;
+//   height: 38px;
+//   border-radius:3px
