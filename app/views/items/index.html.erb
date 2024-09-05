@@ -1,13 +1,12 @@
 <%# <h1>Items#index</h1>
 <p>Find me in app/views/items/index.html.erb</p> %>
-<div class="banner">
+<div class="banner" >
 <!--<div class="h2 text-center">-->
 <div class="container">
   <h1>Explore all products</h1>
   </div>
 </div>
 <hr>
-
 
 <div class="container">
     <h3><%= link_to "Add your rental", new_item_path, class: "btn btn-ghost" %></h3>
@@ -20,7 +19,7 @@
   <% @items.each do |item| %>
   <div class="card-product">
     <!--<div class="card-product-infos">-->
-    
+
       <p><%= link_to item.name, item_path(item) %></p>
     </div>
   <% end %>
