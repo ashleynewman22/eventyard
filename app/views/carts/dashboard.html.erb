@@ -1,0 +1,31 @@
+<div class="container mt-5">
+  <h1 class="mb-4">Pending Carts</h1>
+
+  <% if @pending_carts.empty? %>
+    <p class="alert alert-info">There are no pending carts.</p>
+  <% else %>
+    <div class="row">
+      <% @pending_carts.each do |cart| %>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= cart.item.name %></h5>
+              <p class="card-text">
+                <strong>Requested By:</strong> <%= cart.user.email %><br>
+                <strong>From:</strong> <%= cart.start_date %><br>
+                <strong>To:</strong> <%= cart.end_date %>
+              </p>
+              <div class="btn-group" role="group">
+                <%= button_to 'Accept', accept_cart_path(cart), method: :patch, class: 'btn btn-success btn-sm' %>
+                <%= button_to 'Decline', decline_cart_path(cart), method: :patch, class: 'btn btn-danger btn-sm' %>
+              </div>
+              <%= link_to 'Edit', edit_cart_path(cart), class: 'btn btn-primary btn-sm mt-2' %>
+              <%= button_to 'Delete', cart_path(cart), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm mt-2' %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+

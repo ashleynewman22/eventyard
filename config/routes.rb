@@ -8,5 +8,15 @@ Rails.application.routes.draw do
   resources :items do
     resources :carts, only: %i[index new create destroy]
   end
-    resources :carts
+    resources :carts do
+      member do
+        patch :accept
+        patch :decline
+      end
+      collection do
+        get :dashboard
+        delete :remove_all
+        resources :items
+      end
+    end
 end
