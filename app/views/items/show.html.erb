@@ -2,6 +2,8 @@
 <h2><strong><%= @item.name %></strong></h2>
 </div>
 
+<%= cl_image_tag @item.photo.key, height: 300, width: 400, crop: :fill %>
+
 <hr>
 
 <div class="card p-3 mb-3">
