@@ -1,5 +1,5 @@
 <div class="container mt-4">
-  <h2 class="text-center mb-4">Your Bookings</h2>
+  <h2 class="text-center mb-4">My Rentals</h2>
 
   <% if @carts.any? %>
     <ul class="list-group mb-4">
@@ -47,7 +47,7 @@
 </div>
 
 <div class="container mt-4">
-<h2 class="text-center mb-4">My Bookings</h2>
+<h2 class="text-center mb-4">My Rented Items</h2>
 
 <% @carts.each do |cart| %>
   <% if cart.item.user == current_user %>

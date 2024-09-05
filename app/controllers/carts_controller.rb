@@ -47,10 +47,7 @@ class CartsController < ApplicationController
     end
   end
 
-  def dashboard
-    @pending_carts = Cart.where(status: "pending")
-  end
-
+ 
   def destroy
     set_cart
     if @cart.destroy
