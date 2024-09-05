@@ -11,9 +11,11 @@
   <p><%= @item.category %></p>
   <p>R<%= @item.price %></p>
 </div>
-<%= link_to 'Add to Cart', new_item_cart_path(@item), class: "btn btn primary"%>
-<%= link_to "Delete", item_path(@item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-<i class="fa-regular fa-trash"></i>
+<% unless @item.user == current_user%>
+  <%= link_to 'Add to Cart', new_item_cart_path(@item), class: "btn btn primary"%>
+<% else %>
+  <%= link_to "Delete", item_path(@item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
+<% end %>
 
 <%= link_to "Back to all items", items_path %>
 <!--link_to item.name, item_path(item)-->
