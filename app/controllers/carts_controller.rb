@@ -4,7 +4,9 @@ class CartsController < ApplicationController
   before_action :set_item, only: [:new, :create]
 
   def index
-    @carts = current_user.carts.includes(:item)
+    @carts = Cart.all.includes(:item)
+    @total_price = @carts.sum(&:total_price)
+
   end
 
   def show
@@ -15,32 +17,34 @@ class CartsController < ApplicationController
     @cart = Cart.new
   end
 
-  def total_price
-    item.price * (end_date - start_date).to_i
-  end
-
   def create
     @cart = Cart.new(cart_params)
     @cart.item = @item
     @cart.user = current_user
     @cart.status = "pending"
     if @cart.save
-      redirect_to carts_path, notice: 'Cart created successfully.'
+      redirect_to carts_path, notice: 'Item added to cart successfully.'
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def accept
-    @cart = Cart.find(params[:id])
-    @cart.status = "accepted"
-    redirect_to carts_path, notice: 'Booking accepted!'
+    set_cart
+    if @cart.update(status: "accepted")
+      redirect_to carts_path, notice: 'Booking accepted!'
+    else
+      redirect_to carts_path, alert: 'Failed to accept booking.'
+    end
   end
 
   def decline
-    @cart = Cart.find(params[:id])
-    @cart.status = "declined"
-    redirect_to carts_path, notice: 'Booking declined!'
+    set_cart
+    if @cart.update(status: "declined")
+      redirect_to carts_path, notice: 'Booking declined'
+    else
+      redirect_to carts_path, alert: 'Failed to decline booking.'
+    end
   end
 
   def dashboard
@@ -48,8 +52,17 @@ class CartsController < ApplicationController
   end
 
   def destroy
-    @cart.destroy
-    redirect_to carts_path, notice: 'Cart removed.'
+    set_cart
+    if @cart.destroy
+    redirect_to carts_path, notice: 'Item removed from cart.'
+    else
+    redirect_to carts_path, alert: 'Failed to remove item from cart'
+    end
+  end
+
+  def remove_all
+    current_user.carts.destroy_all
+    redirect_to carts_path, notice: 'All items removed from cart.'
   end
 
   private
