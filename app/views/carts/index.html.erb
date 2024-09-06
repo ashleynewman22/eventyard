@@ -104,33 +104,3 @@
     </div>
   </div>
 </div>
-
-<div class="container mt-4">
-<h2 class="text-center mb-4">My Rented Items</h2>
-
-<% @carts.each do |cart| %>
-  <ul class="list-group mb-4">
-  <% if cart.item.user == current_user %>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-      <div>
-        <strong><%= cart.item.name %></strong>
-        <br>
-        <small>Price: <%= number_to_currency(cart.item.price) %></small>
-        <br>
-        <small>From: <%= cart.start_date.strftime('%B %d, %Y') %></small>
-        <br>
-        <small>To: <%= cart.end_date.strftime('%B %d, %Y') %></small>
-        <br>
-        <small>Status: <%= cart.status %></small>
-      </div>
-      <div>
-        <% if cart.status == 'pending' %>
-          <%= button_to 'Confirm Booking', accept_cart_path(cart), method: :patch, class: 'btn btn-success mr-2', data: { confirm: "Your total price is #{number_to_currency(@total_price)}. Do you want to confirm?" } %>
-          <%= button_to 'Cancel Booking', decline_cart_path(cart), method: :patch, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to cancel this booking?' } %>
-        <% end %>
-      </div>
-    </li>
-  <% end %>
-<% end %>
-</div>
-</ul>
