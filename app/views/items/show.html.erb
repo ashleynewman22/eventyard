@@ -1,23 +1,28 @@
-<div class="h2 text-center">
-<h2><strong><%= @item.name %></strong></h2>
+<div class="container mt-4">
+  <div class="card-product">
+    <div class="card-product-img d-flex justify-content-end">
+      <%= cl_image_tag @item.photo.key, crop: :fill %>
+    </div>
+    <div class="card-product-infos">
+    <div class="card-product-text">
+    <div class="h2">
+      <h2><strong><%= @item.name %></strong></h2>
+    </div>
+      <p><%= @item.description %></p>
+      <p>Category: <%= @item.category %></p>
+    </div>
+    <div class="card-product-price">
+      <p>R<%= @item.price %></p>
+      <% unless @item.user == current_user%>
+      <%= link_to 'Add to Cart', new_item_cart_path(@item), class: "btn btn-purple"%>
+   <% else %>
+      <%= link_to "Delete", item_path(@item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-purple" %>
+    <% end %>
+      </div>
+    </div>
+  </div>
 </div>
 
-<%= cl_image_tag @item.photo.key, height: 300, width: 400, crop: :fill %>
-
-<hr>
-
-<div class="card p-3 mb-3">
-  <p><%= @item.description %></p>
-  <p><%= @item.category %></p>
-  <p>R<%= @item.price %></p>
-</div>
-<% unless @item.user == current_user%>
-  <%= link_to 'Add to Cart', new_item_cart_path(@item), class: "btn btn primary"%>
-<% else %>
-  <%= link_to "Delete", item_path(@item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
-<% end %>
-
-<%= link_to "Back to all items", items_path %>
 <!--link_to item.name, item_path(item)-->
 <%#= link_to "Delete", item_path(@item), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"} %>
 <%#= link_to "Delete", item_path(@item), method:delete, data: { confirm: "Are you sure?" } %>
