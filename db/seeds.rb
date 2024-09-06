@@ -98,7 +98,7 @@ users.each do |user|
       name: item_name,
       description: description,
       category: category,
-      price: rand(50..50_000),
+      price: rand(50..5_000),
       photo: { io: file, filename: "#{item_name.parameterize}.jpg", content_type: "image/jpeg" }
     )
     puts "Created #{item_name} in category #{category}"
