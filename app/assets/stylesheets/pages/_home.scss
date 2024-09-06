@@ -4,16 +4,33 @@
   line-height: 75px;
   // letter-spacing: 3px;
   font-family: var(--font-manrope);
-  color: rgb(10, 37, 64);
-  font-weight: 800;
+  // background-position: fill;
+  // color: #2C1338;
+  // color: rgb(10, 37, 64);
+  // color: #FCE5D8;
+  // color: #412A4C;
+  color: #412A4C;
+  font-weight: 700;
   text-align: left;
 }
 
+
 .banner-info h2 {
-  font-size: 25px;
+  font-size: 35px;
+  color: #412A4C;
+  font-weight: 600;
+  text-align: center;
 }
 
 
+.banner {
+  // background-color: #dce2e8;
+  background-color: #FDF1EC;
+}
+
+.container {
+  background-color: #FDF1EC;
+}
 // .banner-info h3 {
 //   text-align: right;
 //   justify-content: right;

@@ -12,9 +12,9 @@
       <p>Category: <%= @item.category %></p>
     </div>
     <div class="card-product-price">
-      <p>R<%= @item.price %></p>
+      <p>$ <%= @item.price %></p>
       <% unless @item.user == current_user%>
-      <%= link_to 'Add to Cart', new_item_cart_path(@item), class: "btn btn-purple"%>
+      <%= link_to 'Add to Cart', new_item_cart_path(@item), class: "btn btn-purple" %>
    <% else %>
       <%= link_to "Delete", item_path(@item), data: { turbo_method: :delete, turbo_confirm: "Are you sure?" }, class: "btn btn-purple" %>
     <% end %>
@@ -22,4 +22,3 @@
     </div>
   </div>
 </div>
-
