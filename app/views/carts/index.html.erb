@@ -50,6 +50,7 @@
 <h2 class="text-center mb-4">My Rented Items</h2>
 
 <% @carts.each do |cart| %>
+  <ul class="list-group mb-4">
   <% if cart.item.user == current_user %>
     <li class="list-group-item d-flex justify-content-between align-items-center">
       <div>
@@ -73,3 +74,4 @@
   <% end %>
 <% end %>
 </div>
+</ul>

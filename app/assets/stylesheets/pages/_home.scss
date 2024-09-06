@@ -1,13 +1,26 @@
 // Specific CSS for your home-page
 .banner h1 {
-  font-size: 70px;
-  line-height: 101px;
+  font-size: 60px;
+  line-height: 75px;
+  // letter-spacing: 3px;
   font-family: var(--font-manrope);
+  color: rgb(10, 37, 64);
+  font-weight: 800;
+  text-align: left;
 }
+
+.banner-info h2 {
+  font-size: 25px;
+}
+
+
+// .banner-info h3 {
+//   text-align: right;
+//   justify-content: right;
+// }
 
 @media (min-width: 992px) {
   .container {
     max-width: 900px;
   }
 }
-
