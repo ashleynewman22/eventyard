@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "items#index"
+  get "/about", to: "pages#about"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   get "up" => "rails/health#show", as: :rails_health_check
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
