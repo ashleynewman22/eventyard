@@ -15,6 +15,7 @@ class CartsController < ApplicationController
 
   def new
     @cart = Cart.new
+    @item = Item.find(params[:item_id])
   end
 
   def create
@@ -47,7 +48,7 @@ class CartsController < ApplicationController
     end
   end
 
- 
+
   def destroy
     set_cart
     if @cart.destroy

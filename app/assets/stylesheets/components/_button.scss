@@ -13,7 +13,10 @@
 }
 
 .btn-flat {
-  text-decoration: none;
+  a{
+    text-decoration: none;
+    color: white;
+  }
 }
 
 .btn-purple {

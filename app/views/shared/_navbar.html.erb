@@ -1,7 +1,7 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-dark navbar-lewagon">
   <div class="container-fluid">
     <%= link_to "#", class: "navbar-brand" do %>
-    <%= image_tag("eventyard_logo1.png") %>
+    <%= image_tag("eventyard_logo1.png", height:"40") %>
     <% end %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -9,17 +9,20 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-          <li class="nav-item">
-            <%= link_to "All Items", items_path, class: "btn btn-flat" %>
+          <li class="nav-item text-white">
+            <%= link_to "All Items", items_path, class: "btn btn-flat text-white" %>
           </li>
           <li class="nav-item">
-            <%#= link_to "All Items", items_path, class: "btn btn-flat" %>
+            <%= link_to "My Dashboard", carts_path, class: "btn btn-flat text-white" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Add a Rental Item", new_item_path, class: "btn btn-flat text-white" %>
+          </li>
+          <%= link_to "About Us", about_path, class: "btn btn-flat text-white" %>
           </li>
 
-          <li class="nav-item active">
-            <%= link_to "My Cart", carts_path, class: "btn btn-flat" %>
-            <%= link_to "My Rented Items", carts_path, class: "btn btn-flat" %>
-            <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "dropdown-item" %>
+          <li class="nav-item">
+            <%= link_to "Log out", destroy_user_session_path, data: {turbo_method: :delete}, class: "btn btn-flat text-white" %>
           </li>
            <% else %>
           <li class="nav-item">
