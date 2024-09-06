@@ -11,3 +11,17 @@
 .btn-ghost:hover {
   opacity: 1;
 }
+
+.btn-flat {
+  text-decoration: none;
+}
+
+.btn-purple {
+  background-color: $event-purple;
+  padding: 8px 16px;
+  color: white;
+  border-radius: 8px;
+  &:hover {
+    background-color: $event-purple-light;
+  }
+}

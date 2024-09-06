@@ -1,29 +1,43 @@
 <%# <h1>Items#index</h1>
 <p>Find me in app/views/items/index.html.erb</p> %>
 <div class="banner" >
-<!--<div class="h2 text-center">-->
-<div class="container">
-  <h1>Explore all products</h1>
+  <div class="container">
+    <h1>A place for all your event essentials</h1>
+    <hr>
   </div>
 </div>
-<hr>
 
-<div class="container">
-    <h3><%= link_to "Add your rental", new_item_path, class: "btn btn-ghost" %></h3>
-  </div>
+<div class="banner-info">
+  <h2>Explore all products</h2>
+  <%= link_to "Add your rental", new_item_path, class: "btn btn-ghost" %>
+</div>
 
 
-<div class="container mt-4">
+<!--<div class="container">
+  <h3><%#= link_to "Add your rental", new_item_path, class: "btn btn-ghost" %></h3>
+</div>
+-->
+
+<div class="card-container mt-4">
+<!--<div class="card text-center">-->
   <div class="cards">
-  <% @items.each do |item| %>
-  <div class="card-product">
-    <!--<div class="card-product-infos">-->
-
-      <p><%= link_to item.name, item_path(item) %></p>
-    </div>
-  <% end %>
-  </div>
+    <% @items.each do |item| %>
+      <%= link_to item_path(item), class: "btn btn-flat" do %>
+        <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path item.photo.key, crop: :fill if item.photo.attached? %>')">
+          <div class="card-category-info d-flex flex-column align-self-end">
+            <p><%= item.name %></p>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
 </div>
+
+
+
+  <!--<div class="card-category">
+      <p><%#= link_to item.name, item_path(item), class: "btn btn-flat"%></p>
+    </div>-->
+
 
 <%# <div class="cards"> %>
     <%# <% @items.each do |item| %>
