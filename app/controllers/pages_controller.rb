@@ -6,4 +6,7 @@ class PagesController < ApplicationController
     @cart = current_user.carts.includes(:item) if user_signed_in?
   end
 
+  def about
+    
+  end
 end
